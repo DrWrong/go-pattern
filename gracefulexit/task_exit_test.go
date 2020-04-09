@@ -17,10 +17,6 @@ func (t *LongTimeWorkerTask) Start() {
 	t.wg.Add(1)
 	defer t.wg.Done()
 	for {
-		// if t.ctx.Err() != nil {
-		//	fmt.Println("Ctx canceld exist")
-		//	return
-		// }
 		t.processTaskOnce(t.ctx)
 		select {
 		case <-t.ctx.Done():
